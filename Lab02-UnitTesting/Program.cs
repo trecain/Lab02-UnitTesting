@@ -93,7 +93,7 @@ namespace Lab02_UnitTesting
             {
                 try
                 {
-                    if (amountUserWantsToWithdrawFromBankAccount > 0)
+                    if (amountUserWantsToWithdrawFromBankAccount > 0 && amountUserWantsToWithdrawFromBankAccount <= bankingBalance)
                     {
                         bankingBalance -= amountUserWantsToWithdrawFromBankAccount;
                         StopTheLoop();
@@ -101,7 +101,7 @@ namespace Lab02_UnitTesting
                     }
                     else
                     {
-                        return "Sorry, amount entered was not a positive number";
+                        return "Sorry, amount entered was either a negative amount or exceeds bank account amount.";
                     }
                 }
                 catch(Exception)
