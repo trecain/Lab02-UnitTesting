@@ -6,4 +6,4 @@ Solution directions were to include a User Interface, Main method, and Methods t
 Program should be able to catch and handle any user errors.
 
 ## Visual
-![]()
+![](https://github.com/trecain/Lab02-UnitTesting/blob/master/assets/labtwo.PNG)
