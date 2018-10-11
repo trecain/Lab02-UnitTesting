@@ -5,6 +5,7 @@ namespace Lab02_UnitTesting
     class Program
     {
         public static double bankingBalance = 5000;
+        public static bool runLoop = true;
 
         static void Main(string[] args)
         {
@@ -14,7 +15,6 @@ namespace Lab02_UnitTesting
 
         public static void Interface()
         {
-            bool runLoop = true;
             string userMenuSelection;
             Console.WriteLine("1. View Balance");
             Console.WriteLine("2. Withdraw Money");
@@ -30,6 +30,7 @@ namespace Lab02_UnitTesting
                     {
                         case "1":
                             Console.WriteLine(ViewBankingBalance());
+                            runLoop = false;
                             break;
                         case "2":
                             Console.WriteLine(WithDrawFromBankAccountBalance());
@@ -40,7 +41,8 @@ namespace Lab02_UnitTesting
                             Console.WriteLine(ViewBankingBalance());
                             break;
                         case "4":
-                            Console.WriteLine("You have selected to exit");
+                            Console.WriteLine("Thank you for coming by.");
+                            StopTheLoop();
                             break;
                         default:
                             Console.WriteLine("You have selected something off the menu");
@@ -53,7 +55,7 @@ namespace Lab02_UnitTesting
                 }
                 finally
                 {
-                    Console.WriteLine("Goodbye");
+                    Console.WriteLine("Patience is a virtue");
                 }
             }
         }
@@ -64,6 +66,11 @@ namespace Lab02_UnitTesting
         public static string ViewBankingBalance()
         {
             return $"Your current bank account balance is: {bankingBalance}";
+        }
+
+        public static void StopTheLoop()
+        {
+            runLoop = false;
         }
 
 
@@ -87,6 +94,7 @@ namespace Lab02_UnitTesting
                     if (amountUserWantsToWithdrawFromBankAccount > 0)
                     {
                         bankingBalance -= amountUserWantsToWithdrawFromBankAccount;
+                        StopTheLoop();
                         return $"Transaction Successful: withdrew {amountUserWantsToWithdrawFromBankAccount}";
                     }
                     else
@@ -118,6 +126,7 @@ namespace Lab02_UnitTesting
                 try
                 {
                     bankingBalance += amountUserWantsToDepositInBankAccount;
+                    StopTheLoop();
                     return $"Transaction Successful: deposited {amountUserWantsToDepositInBankAccount}";
                 }
                 catch (Exception)
