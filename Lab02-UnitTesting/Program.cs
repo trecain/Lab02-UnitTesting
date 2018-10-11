@@ -33,11 +33,17 @@ namespace Lab02_UnitTesting
                             runLoop = false;
                             break;
                         case "2":
-                            Console.WriteLine(WithDrawFromBankAccountBalance());
+                            double amountUserWantsToWithdrawFromBankAccount;
+                            Console.WriteLine("How much would you like to withdraw?");
+                            amountUserWantsToWithdrawFromBankAccount = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine(WithDrawFromBankAccountBalance(amountUserWantsToWithdrawFromBankAccount));
                             Console.WriteLine(ViewBankingBalance());
                             break;
                         case "3":
-                            Console.WriteLine(DepositMoneyToBankAccountBalance());
+                            double amountUserWantsToDepositInBankAccount;
+                            Console.WriteLine("How much would you like to Deposit?");
+                            amountUserWantsToDepositInBankAccount = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine(DepositMoneyToBankAccountBalance(amountUserWantsToDepositInBankAccount));
                             Console.WriteLine(ViewBankingBalance());
                             break;
                         case "4":
@@ -77,12 +83,8 @@ namespace Lab02_UnitTesting
         //Saves the amount the user wants to withdraw in a variable and subtracts it from banking balance.
         //Also checks to see if user has money in bank account and if the amount they wanted to withdraw is not a negative number.
 
-        public static string WithDrawFromBankAccountBalance()
+        public static string WithDrawFromBankAccountBalance(double amountUserWantsToWithdrawFromBankAccount)
         {
-            double amountUserWantsToWithdrawFromBankAccount;
-            Console.WriteLine("How much would you like to withdraw?");
-            amountUserWantsToWithdrawFromBankAccount = Convert.ToInt32(Console.ReadLine());
-
             if (bankingBalance <= 0)
             {
                 return "Error: Insufficient funds";
@@ -111,12 +113,8 @@ namespace Lab02_UnitTesting
         }
 
 
-        public static string DepositMoneyToBankAccountBalance()
+        public static string DepositMoneyToBankAccountBalance(double amountUserWantsToDepositInBankAccount)
         {
-            double amountUserWantsToDepositInBankAccount;
-            Console.WriteLine("How much would you like to Deposit?");
-            amountUserWantsToDepositInBankAccount = Convert.ToInt32(Console.ReadLine());
-        
             if (amountUserWantsToDepositInBankAccount < 0)
             {
                 return "Error: Insufficient deposit amount";
