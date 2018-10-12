@@ -2,12 +2,12 @@
 
 namespace Lab02_UnitTesting
 {
-    class Program
+    public class Program
     {
-        public static double bankingBalance = 5000;
+        public static decimal bankingBalance = 5000;
         public static bool runLoop = true;
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Bank of Tre");
             Interface();
@@ -15,32 +15,31 @@ namespace Lab02_UnitTesting
 
         public static void Interface()
         {
-            string userMenuSelection;
-            Console.WriteLine("1. View Balance");
-            Console.WriteLine("2. Withdraw Money");
-            Console.WriteLine("3. Deposit Money");
-            Console.WriteLine("4. Exit");
-            userMenuSelection = Console.ReadLine();
-
             while (runLoop)
             {
+                string userMenuSelection;
+                Console.WriteLine("1. View Balance");
+                Console.WriteLine("2. Withdraw Money");
+                Console.WriteLine("3. Deposit Money");
+                Console.WriteLine("4. Exit");
+                userMenuSelection = Console.ReadLine();
+                
                 try
                 {
                     switch (userMenuSelection)
                     {
                         case "1":
                             Console.WriteLine(ViewBankingBalance());
-                            runLoop = false;
                             break;
                         case "2":
-                            double amountUserWantsToWithdrawFromBankAccount;
+                            decimal amountUserWantsToWithdrawFromBankAccount;
                             Console.WriteLine("How much would you like to withdraw?");
                             amountUserWantsToWithdrawFromBankAccount = Convert.ToInt32(Console.ReadLine());
                             Console.WriteLine(WithDrawFromBankAccountBalance(amountUserWantsToWithdrawFromBankAccount));
                             Console.WriteLine(ViewBankingBalance());
                             break;
                         case "3":
-                            double amountUserWantsToDepositInBankAccount;
+                            decimal amountUserWantsToDepositInBankAccount;
                             Console.WriteLine("How much would you like to Deposit?");
                             amountUserWantsToDepositInBankAccount = Convert.ToInt32(Console.ReadLine());
                             Console.WriteLine(DepositMoneyToBankAccountBalance(amountUserWantsToDepositInBankAccount));
@@ -61,7 +60,7 @@ namespace Lab02_UnitTesting
                 }
                 finally
                 {
-                    Console.WriteLine("Patience is a virtue");
+                    Console.WriteLine("Your business is our first priority.");
                 }
             }
         }
@@ -83,7 +82,7 @@ namespace Lab02_UnitTesting
         //Saves the amount the user wants to withdraw in a variable and subtracts it from banking balance.
         //Also checks to see if user has money in bank account and if the amount they wanted to withdraw is not a negative number.
 
-        public static string WithDrawFromBankAccountBalance(double amountUserWantsToWithdrawFromBankAccount)
+        public static string WithDrawFromBankAccountBalance(decimal amountUserWantsToWithdrawFromBankAccount)
         {
             if (bankingBalance <= 0)
             {
@@ -96,7 +95,6 @@ namespace Lab02_UnitTesting
                     if (amountUserWantsToWithdrawFromBankAccount > 0 && amountUserWantsToWithdrawFromBankAccount <= bankingBalance)
                     {
                         bankingBalance -= amountUserWantsToWithdrawFromBankAccount;
-                        StopTheLoop();
                         return $"Transaction Successful: withdrew {amountUserWantsToWithdrawFromBankAccount}";
                     }
                     else
@@ -113,7 +111,7 @@ namespace Lab02_UnitTesting
         }
 
 
-        public static string DepositMoneyToBankAccountBalance(double amountUserWantsToDepositInBankAccount)
+        public static string DepositMoneyToBankAccountBalance(decimal amountUserWantsToDepositInBankAccount)
         {
             if (amountUserWantsToDepositInBankAccount < 0)
             {
@@ -124,7 +122,6 @@ namespace Lab02_UnitTesting
                 try
                 {
                     bankingBalance += amountUserWantsToDepositInBankAccount;
-                    StopTheLoop();
                     return $"Transaction Successful: deposited {amountUserWantsToDepositInBankAccount}";
                 }
                 catch (Exception)
