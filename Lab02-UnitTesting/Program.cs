@@ -106,7 +106,6 @@ namespace Lab02_UnitTesting
                 {
                     throw;
                 }
-               
             }
         }
 
