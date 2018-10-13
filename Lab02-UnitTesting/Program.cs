@@ -65,6 +65,16 @@ namespace Lab02_UnitTesting
             }
         }
 
+        public static void DepositMoneyToBankAccountBalance(string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static object WithDrawFromBankAccountBalance(string v)
+        {
+            throw new NotImplementedException();
+        }
+
 
         //Shows user the current bank account balance.
 

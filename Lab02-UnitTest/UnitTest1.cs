@@ -29,12 +29,38 @@ namespace Lab02_UnitTest
 
         [Theory]
         [InlineData(500, 0, "Error: Insufficient funds")]
-        public string CanWithdrawFromBankAccountBalance(decimal withdrawAmount, decimal bankingBalance, string expectedResult)
+        [InlineData(1000, 5000, "Transaction Successful: withdrew 1000")]
+        [InlineData(-100, 5000, "Sorry, amount entered was either a negative amount or exceeds bank account amount.")]
+
+        public void CanWithdrawFromBankAccountBalance(decimal withdrawAmount, decimal bankingBalance, string expectedResult)
         {
             Program.bankingBalance = bankingBalance;
             var result = Program.WithDrawFromBankAccountBalance(withdrawAmount);
-
             Assert.Equal(expectedResult, result);
+        }
+        
+        [Fact] 
+        public void WillThrowExceptionForWithdraw()
+        {
+            var result = Record.Exception(() => Program.WithDrawFromBankAccountBalance("Hello World"));
+            Assert.IsType<NotImplementedException>(result);
+        }
+
+        [Theory]
+        [InlineData(-1, "Error: Insufficient deposit amount")]
+        [InlineData(5000, "Transaction Successful: deposited 5000")]
+
+        public void CanDepositToBankAccountBalance(decimal depositAmount, string expectedResult)
+        {
+            var result = Program.DepositMoneyToBankAccountBalance(depositAmount);
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Fact]
+        public void WillThrowExceptionForDeposit()
+        {
+            var result = Record.Exception(() => Program.DepositMoneyToBankAccountBalance("turtle"));
+            Assert.IsType<NotImplementedException>(result);
         }
 
     }
